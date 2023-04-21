@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:443339563352:android:163a713c7dbf0b1fe3852d",
         "android_client_info": {
-          "package_name": "com.Weatho"
+          "package_name": "com.weatho"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "443339563352-3dc291ebvmqcg3l420ktjpk1nevkidla.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.Weatho",
+            "package_name": "com.weatho",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },

@@ -3,6 +3,8 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import Home from './Screens/Home'
+import index from './Screens'
+import Index from './Screens'
 
 const StackNavigator = () => {
     const Stack = createStackNavigator()
@@ -11,6 +13,7 @@ const StackNavigator = () => {
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Home' >
             <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+
         </Stack.Navigator>
 
     </NavigationContainer>

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Geolocation from '@react-native-community/geolocation'
 import { TextInput } from 'react-native-gesture-handler'
 
+
 const Home = () => {
     const [latitude, setLatitude] = useState('')
     const [longitude, setLongitude] = useState('')
@@ -10,6 +11,7 @@ const Home = () => {
     const [currWeather, setCurrWeather] = useState()
     const [icon, setIcon] = useState()
     const [city_name, setcity_Name] = useState()
+    const [degree, setDegree] = useState()
 
 
     const getWeather = () => {
@@ -25,8 +27,9 @@ const Home = () => {
             setCurrWeather(curr)
             const icon = resp.current.condition.icon
             setIcon(icon)
-            const city = resp.current.location.name
-            console.log(city)
+            const degrees = resp.current.temp_c
+            setDegree(degrees)
+            console.log(degrees)
         })
     }
 
@@ -35,22 +38,32 @@ const Home = () => {
             console.log(position)
             const lat = position.coords.latitude
             const long = position.coords.longitude
-            
+
             setLatitude(lat)
             setLongitude(long)
             getWeather()
         })
     }
     return (
-        <View style={{ flex: 1, marginTop:20 }}>
-            <>
-                <TextInput style={styles.search} placeholder='Enter' onChangeText={(text) => setName(text)} />
-                <TouchableOpacity style={styles.btn} onPress={getLocation}>
-                    <Text style={{ color: 'white' }}>Press</Text>
-                </TouchableOpacity>
-                <Text>{city_name}</Text>
-                <Image style={{ resizeMode: 'contain', height: 60, width: 60 }} source={{ uri: `http:${icon}` }}></Image>
-            </>
+        <View style={{ backgroundColor: '#462D9E', flex: 1 }}>
+            <TextInput style={{borderWidth:1,width:'90%',marginHorizontal:20,borderRadius:10,marginTop:20,backgroundColor:'white'}} onChangeText={(text) => setName(text)} placeholder='Enter Location' />
+            <TouchableOpacity onPress={getLocation} style={{backgroundColor:'white',borderRadius:10,marginHorizontal:20,width:'90%',marginTop:10,alignItems:'center',justifyContent:'center'}}>
+                <Text style={{color:'#3B2776'}}>Check</Text>
+            </TouchableOpacity>
+            <Text style={{ marginLeft:20,fontSize:50, color: 'white' }}>Today</Text>
+            <Text style={{ marginLeft:20,fontSize:50,color: 'white' }}>Thu 21 Apr</Text>
+            <Text style={{ marginLeft:20,color: 'white' }}>{currWeather}</Text>
+            <Text style={{ marginLeft:20,color: 'white' }}>{name}</Text>
+            <Text style={{ marginLeft:20,color: 'white' }}>{degree}°</Text>
+            <Image style={{height:40,width:40,resizeMode:'contain'}} source={{uri:`http:${icon}`}}></Image>
+            <Text style={{ color: 'white' }}></Text>
+            <View style={{ backgroundColor: 'white',height: 300, top:350, borderRadius: 20 }}>
+                <Text style={{ color: '#462D9E', marginTop: 10 }}>        Today                Tomorrow            Next 7 Days</Text>
+                <View style={{ backgroundColor: '#E3DCFA', height: 150, width: 50, marginLeft: 20, borderRadius: 20, marginTop: 20 }}>
+
+                </View>
+            </View>
+
         </View>
     )
 }
@@ -62,12 +75,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 40,
         width: '90%',
-        marginHorizontal:20,
+        marginHorizontal: 20,
     },
     btn: {
         backgroundColor: "#462A9F",
         width: '90%',
-        marginHorizontal:20,
+        marginHorizontal: 20,
         height: 40,
         marginTop: 10,
         borderRadius: 9,
